@@ -37,7 +37,6 @@ module "statics_deploy" {
   cloudfront_id                     = var.cloudfront_create_distribution ? module.cloudfront_main[0].cloudfront_id : var.cloudfront_external_id
   cloudfront_arn                    = var.cloudfront_create_distribution ? module.cloudfront_main[0].cloudfront_arn : var.cloudfront_external_arn
   lambda_role_permissions_boundary  = var.lambda_role_permissions_boundary
-  use_awscli_for_static_upload      = var.use_awscli_for_static_upload
   deployment_name                   = var.deployment_name
   tags                              = var.tags
   tags_s3_bucket                    = var.tags_s3_bucket
