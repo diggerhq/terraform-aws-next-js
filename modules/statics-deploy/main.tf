@@ -172,7 +172,6 @@ module "lambda_content" {
 
 module "deploy_trigger" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "2.4.0"
 
   function_name             = "${var.deployment_name}_tfn-deploy"
   description               = "Managed by Terraform Next.js"
