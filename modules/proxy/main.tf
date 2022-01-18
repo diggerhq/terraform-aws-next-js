@@ -14,23 +14,18 @@ module "proxy_package" {
 #############
 
 module "edge_proxy" {
-  source  = "terraform-aws-modules/lambda/aws"
-  version = "2.4.0"
+  source = "terraform-aws-modules/lambda/aws"
 
-  lambda_at_edge = true
-
-  function_name             = "${var.deployment_name}_tfn-proxy"
-  description               = "Managed by Terraform Next.js"
-  handler                   = "handler.handler"
-  runtime                   = var.lambda_default_runtime
-  role_permissions_boundary = var.lambda_role_permissions_boundary
-
-  create_package         = false
-  local_existing_package = module.proxy_package.abs_path
-
+  lambda_at_edge                    = true
+  function_name                     = "${var.deployment_name}_tfn-proxy"
+  description                       = "Managed by Terraform Next.js"
+  handler                           = "handler.handler"
+  runtime                           = var.lambda_default_runtime
+  role_permissions_boundary         = var.lambda_role_permissions_boundary
+  create_package                    = false
+  local_existing_package            = module.proxy_package.abs_path
   cloudwatch_logs_retention_in_days = 30
-
-  tags = var.tags
+  tags                              = var.tags
 
   providers = {
     aws = aws.global_region
