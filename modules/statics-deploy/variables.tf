@@ -72,3 +72,8 @@ variable "debug_use_local_packages" {
 variable "tf_next_module_root" {
   type = string
 }
+
+variable cloudwatch_logs_retention_in_days {
+  description = "CloudWatch logs retention in days."
+  type        = number
+}

@@ -183,14 +183,12 @@ module "deploy_trigger" {
   publish                   = true
   tags                      = var.tags
   role_permissions_boundary = var.lambda_role_permissions_boundary
-
-  create_package         = false
-  local_existing_package = module.lambda_content.abs_path
+  create_package            = false
+  local_existing_package    = module.lambda_content.abs_path
 
   # Prevent running concurrently
-  reserved_concurrent_executions = 1
-
-  cloudwatch_logs_retention_in_days = 14
+  provisioned_concurrent_executions = 1
+  cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 
   allowed_triggers = {
     AllowExecutionFromS3Bucket = {
@@ -226,6 +224,7 @@ module "deploy_trigger" {
     }
   }
 }
+
 
 ###########################
 # Upload static files to s3

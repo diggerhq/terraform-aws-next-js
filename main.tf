@@ -32,21 +32,18 @@ locals {
 module "statics_deploy" {
   source = "./modules/statics-deploy"
 
-  static_files_archive = local.static_files_archive
-  expire_static_assets = var.expire_static_assets
-
-  cloudfront_id  = var.cloudfront_create_distribution ? module.cloudfront_main[0].cloudfront_id : var.cloudfront_external_id
-  cloudfront_arn = var.cloudfront_create_distribution ? module.cloudfront_main[0].cloudfront_arn : var.cloudfront_external_arn
-
-  lambda_role_permissions_boundary = var.lambda_role_permissions_boundary
-  use_awscli_for_static_upload     = var.use_awscli_for_static_upload
-
-  deployment_name = var.deployment_name
-  tags            = var.tags
-  tags_s3_bucket  = var.tags_s3_bucket
-
-  debug_use_local_packages = var.debug_use_local_packages
-  tf_next_module_root      = path.module
+  static_files_archive              = local.static_files_archive
+  expire_static_assets              = var.expire_static_assets
+  cloudfront_id                     = var.cloudfront_create_distribution ? module.cloudfront_main[0].cloudfront_id : var.cloudfront_external_id
+  cloudfront_arn                    = var.cloudfront_create_distribution ? module.cloudfront_main[0].cloudfront_arn : var.cloudfront_external_arn
+  lambda_role_permissions_boundary  = var.lambda_role_permissions_boundary
+  use_awscli_for_static_upload      = var.use_awscli_for_static_upload
+  deployment_name                   = var.deployment_name
+  tags                              = var.tags
+  tags_s3_bucket                    = var.tags_s3_bucket
+  debug_use_local_packages          = var.debug_use_local_packages
+  tf_next_module_root               = path.module
+  cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 }
 
 # Lambda
