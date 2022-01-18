@@ -4,7 +4,6 @@
 variable "next_tf_dir" {
   description = "Relative path to the .next-tf dir."
   type        = string
-  default     = "./.next-tf"
 }
 
 variable "create_image_optimization" {
