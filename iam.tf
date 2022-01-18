@@ -17,14 +17,11 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "lambda" {
   for_each = local.lambdas
 
-  name        = "${var.deployment_name}_${each.key}"
-  description = "Managed by Terraform Next.js"
-
+  name                 = "${var.deployment_name}_${each.key}"
+  description          = "Managed by Terraform Next.js"
   permissions_boundary = var.lambda_role_permissions_boundary
-
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
-
-  tags = var.tags
+  assume_role_policy   = data.aws_iam_policy_document.assume_role.json
+  tags                 = var.tags
 }
 
 #############################
