@@ -186,7 +186,7 @@ module "deploy_trigger" {
   local_existing_package    = module.lambda_content.abs_path
 
   # Prevent running concurrently
-  provisioned_concurrent_executions = 1
+  #provisioned_concurrent_executions = 1
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 
   allowed_triggers = {
