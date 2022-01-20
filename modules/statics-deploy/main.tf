@@ -27,6 +27,8 @@ resource "aws_s3_bucket_notification" "on_create" {
     lambda_function_arn = module.deploy_trigger.lambda_function_arn
     events              = ["s3:ObjectCreated:*"]
   }
+
+  depends_on = [module.deploy_trigger]
 }
 
 #########################
