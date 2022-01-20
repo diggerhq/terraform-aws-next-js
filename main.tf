@@ -167,6 +167,7 @@ module "next_image" {
 
   deployment_name = "${var.deployment_name}_tfn-image"
   tags            = var.tags
+  depends_on = [aws_lambda_function.nextjs_lambda]
 }
 
 #########################
