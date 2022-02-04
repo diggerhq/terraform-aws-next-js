@@ -26,8 +26,4 @@ module "edge_proxy" {
   local_existing_package            = module.proxy_package.abs_path
   cloudwatch_logs_retention_in_days = 30
   tags                              = var.tags
-
-  providers = {
-    aws = aws.global_region
-  }
 }

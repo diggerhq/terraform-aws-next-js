@@ -5,7 +5,6 @@ terraform {
     aws = {
       source                = "hashicorp/aws"
       version               = ">= 3.43.0"
-      configuration_aliases = [aws.global_region]
     }
   }
 }
