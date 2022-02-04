@@ -231,19 +231,12 @@ module "deploy_trigger" {
 # Upload static files to s3
 ###########################
 
-resource "null_resource" "static_s3_upload_awscli" {
-  triggers = {
-    static_files_archive = filemd5(var.static_files_archive)
-  }
-
-  provisioner "local-exec" {
-    command = "aws s3 cp --region ${aws_s3_bucket.static_upload.region} ${abspath(var.static_files_archive)} s3://${aws_s3_bucket.static_upload.id}/${basename(var.static_files_archive)}"
-  }
-
-  # Make sure this only runs when the bucket and the lambda trigger are setup
-  depends_on = [
-    aws_s3_bucket_notification.on_create
-  ]
+resource "aws_s3_bucket_object" "object" {
+  bucket = aws_s3_bucket.static_upload.id
+  key    = basename(var.static_files_archive)
+  acl    = "private"  # or can be "public-read"
+  source = abspath(var.static_files_archive)
+  etag = filemd5(abspath(var.static_files_archive))
 }
 
 ################################
