@@ -142,9 +142,7 @@ data "aws_iam_policy_document" "access_static_deployment" {
 
 module "next_image" {
   count = var.create_image_optimization ? 1 : 0
-
-  source  = "milliHQ/next-js-image-optimization/aws"
-  version = ">= 11.0.0"
+  source  = "github.com/diggerhq/terraform-aws-next-js-image-optimization"
 
   cloudfront_create_distribution = false
 
