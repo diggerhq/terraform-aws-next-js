@@ -14,7 +14,8 @@ module "proxy_package" {
 #############
 
 module "edge_proxy" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
+  version = "~> 2.0"
 
   lambda_at_edge                    = true
   function_name                     = "${var.deployment_name}_tfn-proxy"
